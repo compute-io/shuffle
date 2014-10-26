@@ -60,7 +60,7 @@ $ node ./examples/index.js
 
 ## Notes
 
-Beware of implementations on NPM and elsewhere which use bitwise operators to floor numeric values. When using bitwise operators, numeric values are converted into 32-bit integers. For large numeric values, you will experience unexpected results. While not a concern for this algorithm, bitwise operators also produce unexpected results when used on negative numeric values.
+Beware of implementations on NPM and elsewhere which use bitwise operators to floor numeric values. When using bitwise operators, numeric values are converted to 32-bit integers. For large numeric values, you will experience unexpected results. While not a concern for this algorithm, bitwise operators also produce unexpected results when used on negative numeric values.
 
 
 
