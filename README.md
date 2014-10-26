@@ -4,6 +4,8 @@ shuffle
 
 > Shuffles array elements in place.
 
+This module implements the [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) (a.k.a. the Knuth shuffle) to generate a random permutation of a finite set.
+
 
 ## Installation
 
@@ -19,14 +21,34 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 To use the module,
 
 ``` javascript
-var lib = require( 'compute-shuffle' );
+var shuffle = require( 'compute-shuffle' );
+```
+
+#### shuffle( arr )
+
+Mutates the input `array` to generate a random permutation of `array` elements.
+
+``` javascript
+shuffle( [ 1, 2, 3 ] );
 ```
 
 
 ## Examples
 
 ``` javascript
-var lib = require( 'compute-shuffle' );
+var shuffle = require( 'compute-shuffle' );
+
+var data = new Array( 20 );
+for ( var i = 0; i < data.length; i++ ) {
+	data[ i ] = i;
+}
+
+var copy;
+for ( var j = 0; j < 10; j++ ) {
+	copy = data.slice();
+	shuffle( copy );
+	console.log( copy );
+}
 ```
 
 To run the example code from the top-level application directory,
@@ -34,6 +56,13 @@ To run the example code from the top-level application directory,
 ``` bash
 $ node ./examples/index.js
 ```
+
+
+## Notes
+
+Beware of implementations on NPM and elsewhere which use bitwise operators to floor numeric values. When using bitwise operators, numeric values are converted into 32-bit integers. For large numeric values, you will experience unexpected results. While not a concern for this algorithm, bitwise operators also produce unexpected results when used on negative numeric values.
+
+
 
 
 ## Tests

@@ -5,7 +5,7 @@ var // Expectation library:
 	chai = require( 'chai' ),
 
 	// Module to be tested:
-	lib = require( './../lib' );
+	shuffle = require( './../lib' );
 
 
 // VARIABLES //
@@ -20,9 +20,79 @@ describe( 'compute-shuffle', function tests() {
 	'use strict';
 
 	it( 'should export a function', function test() {
-		expect( lib ).to.be.a( 'function' );
+		expect( shuffle ).to.be.a( 'function' );
 	});
 
-	it( 'should do something' );
+	it( 'should throw an error if not provided an array', function test() {
+		var values = [
+				'5',
+				5,
+				null,
+				undefined,
+				true,
+				NaN,
+				{},
+				function(){}
+			];
+
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[i] ) ).to.throw( TypeError );
+		}
+
+		function badValue( value ) {
+			return function() {
+				shuffle( value );
+			};
+		}
+	});
+
+	it( 'should generate unbiased permutations', function test() {
+		var d = [ 0, 1, 2, 3 ],
+			N = d.length,
+			results = {},
+			total,
+			copy,
+			keys,
+			key,
+			mu,
+			delta;
+
+		// This test will take a while...
+		this.timeout( 5000 );
+
+		// Record each permutation...
+		for ( var i = 0; i < 1e6; i++ ) {
+			copy = d.slice();
+			shuffle( copy );
+			key = copy.join( '' );
+			if ( !results.hasOwnProperty( key ) ) {
+				results[ key ] = 0;
+			}
+			results[ key ] += 1;
+		}
+
+		// Ensure all permutations reached...
+		
+		total = 1;
+		for ( var j = N; j > 0; j-- ) {
+			total *= j;
+		}
+
+		keys = Object.keys( results );
+		assert.strictEqual( keys.length, total );
+
+		// Ensure that the sampling is unbiased...
+
+		mu = 0;
+		for ( var k = 0; k < keys.length; k++ ) {
+			key = keys[ k ];
+			delta = results[ key ] - mu;
+			mu += delta / ( k+1 );
+		}
+		
+		for ( var n = 0; n < keys.length; n++ ) {
+			assert.closeTo( results[ key ], mu, 1e3 );
+		}
+	});
 
 });
