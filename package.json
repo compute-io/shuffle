@@ -1,6 +1,6 @@
 {
   "name": "compute-shuffle",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Shuffles array elements in place.",
   "author": {
     "name": "Athan Reines",
