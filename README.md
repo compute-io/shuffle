@@ -4,7 +4,7 @@ shuffle
 
 > Shuffles array elements in place.
 
-This module implements the [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) (a.k.a. the Knuth shuffle) to generate a random permutation of a finite set.
+This module implements the [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) (a.k.a. the Knuth shuffle) to generate a random permutation of a finite set of `array` elements.
 
 
 ## Installation
