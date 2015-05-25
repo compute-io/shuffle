@@ -1,3 +1,5 @@
+'use strict';
+
 var shuffle = require( './../lib' );
 
 var data = new Array( 20 );

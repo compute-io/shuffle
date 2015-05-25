@@ -1,3 +1,4 @@
+'use strict';
 
 // MODULES //
 
@@ -17,7 +18,6 @@ var expect = chai.expect,
 // TESTS //
 
 describe( 'compute-shuffle', function tests() {
-	'use strict';
 
 	it( 'should export a function', function test() {
 		expect( shuffle ).to.be.a( 'function' );
@@ -72,7 +72,7 @@ describe( 'compute-shuffle', function tests() {
 		}
 
 		// Ensure all permutations reached...
-		
+
 		total = 1;
 		for ( var j = N; j > 0; j-- ) {
 			total *= j;
@@ -89,7 +89,7 @@ describe( 'compute-shuffle', function tests() {
 			delta = results[ key ] - mu;
 			mu += delta / ( k+1 );
 		}
-		
+
 		for ( var n = 0; n < keys.length; n++ ) {
 			assert.closeTo( results[ key ], mu, 1e3 );
 		}
