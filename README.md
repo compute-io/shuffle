@@ -29,9 +29,10 @@ Mutates the input `array` to generate a random permutation of `array` elements.
 
 ``` javascript
 shuffle( [ 1, 2, 3 ] );
+// returns e.g. [ 3, 1, 2 ]
 ```
 
-To mutate the input `array` (e.g. when input values can be discarded or when optimizing memory usage), set the `copy` option to `false`.
+To mutate the input `array` (e.g. when input values can be discarded or when optimizing memory usage), set `copy` to `false`.
 
 ``` javascript
 
