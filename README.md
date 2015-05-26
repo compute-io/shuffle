@@ -23,7 +23,7 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 var shuffle = require( 'compute-shuffle' );
 ```
 
-#### shuffle( arr )
+#### shuffle( arr[, copy] )
 
 Mutates the input `array` to generate a random permutation of `array` elements.
 
@@ -31,6 +31,16 @@ Mutates the input `array` to generate a random permutation of `array` elements.
 shuffle( [ 1, 2, 3 ] );
 ```
 
+To mutate the input `array` (e.g. when input values can be discarded or when optimizing memory usage), set the `copy` option to `false`.
+
+``` javascript
+
+var data = [ 1, 2, 3 ]
+var values = shuffle( data, false )
+
+console.log( data === values );
+//returns true
+```
 
 ## Examples
 
@@ -42,11 +52,10 @@ for ( var i = 0; i < data.length; i++ ) {
 	data[ i ] = i;
 }
 
-var copy;
+var result;
 for ( var j = 0; j < 10; j++ ) {
-	copy = data.slice();
-	shuffle( copy );
-	console.log( copy );
+	result = shuffle( data );
+	console.log( result );
 }
 ```
 
