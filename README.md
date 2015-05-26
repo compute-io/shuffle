@@ -18,20 +18,30 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 
 ## Usage
 
-To use the module,
 
 ``` javascript
 var shuffle = require( 'compute-shuffle' );
 ```
 
-#### shuffle( arr )
+#### shuffle( arr[, copy] )
 
 Mutates the input `array` to generate a random permutation of `array` elements.
 
 ``` javascript
 shuffle( [ 1, 2, 3 ] );
+// returns e.g. [ 3, 1, 2 ]
 ```
 
+To mutate the input `array` (e.g. when input values can be discarded or when optimizing memory usage), set `copy` to `false`.
+
+``` javascript
+
+var data = [ 1, 2, 3 ]
+var values = shuffle( data, false )
+
+console.log( data === values );
+//returns true
+```
 
 ## Examples
 
@@ -43,11 +53,10 @@ for ( var i = 0; i < data.length; i++ ) {
 	data[ i ] = i;
 }
 
-var copy;
+var result;
 for ( var j = 0; j < 10; j++ ) {
-	copy = data.slice();
-	shuffle( copy );
-	console.log( copy );
+	result = shuffle( data );
+	console.log( result );
 }
 ```
 
@@ -69,7 +78,7 @@ Beware of implementations on NPM and elsewhere which use bitwise operators to fl
 
 ### Unit
 
-Unit tests use the [Mocha](http://visionmedia.github.io/mocha) test framework with [Chai](http://chaijs.com) assertions. To run the tests, execute the following command in the top-level application directory:
+Unit tests use the [Mocha](http://mochajs.org) test framework with [Chai](http://chaijs.com) assertions. To run the tests, execute the following command in the top-level application directory:
 
 ``` bash
 $ make test
@@ -93,15 +102,15 @@ $ make view-cov
 ```
 
 
+---
 ## License
 
-[MIT license](http://opensource.org/licenses/MIT). 
+[MIT license](http://opensource.org/licenses/MIT).
 
 
----
 ## Copyright
 
-Copyright &copy; 2014. Athan Reines.
+Copyright &copy; 2014-2015. The Compute.io Authors.
 
 
 [npm-image]: http://img.shields.io/npm/v/compute-shuffle.svg
