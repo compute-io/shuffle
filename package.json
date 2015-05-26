@@ -44,7 +44,8 @@
     "url": "https://github.com/compute-io/shuffle/issues"
   },
   "dependencies": {
-    "validate.io-array": "^1.0.5"
+    "validate.io-array": "^1.0.5",
+    "validate.io-boolean-primitive": "^1.0.0"
   },
   "devDependencies": {
     "chai": "2.x.x",
