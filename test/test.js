@@ -88,7 +88,7 @@ describe( 'compute-shuffle', function tests() {
 		// Record each permutation...
 		for ( var i = 0; i < 1e6; i++ ) {
 			copy = d.slice();
-			res = shuffle( copy, false );
+			res = shuffle( copy );
 			key = res.join( '' );
 			if ( !results.hasOwnProperty( key ) ) {
 				results[ key ] = 0;
@@ -137,7 +137,7 @@ describe( 'compute-shuffle', function tests() {
 		// Record each permutation...
 		for ( var i = 0; i < 1e6; i++ ) {
 			copy = d.slice();
-			shuffle( copy );
+			shuffle( copy, false );
 			key = copy.join( '' );
 			if ( !results.hasOwnProperty( key ) ) {
 				results[ key ] = 0;
